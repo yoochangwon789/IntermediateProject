@@ -20,6 +20,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     // firebase 에서 메세지를 발신하고 클라이언트 단에서 수신할 때 마다 이 메서드를 호출하게 된다
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
+
+        createNotificationChannel()
     }
 
     private fun createNotificationChannel() {
