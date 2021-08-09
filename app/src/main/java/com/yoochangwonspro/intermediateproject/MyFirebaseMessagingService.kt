@@ -1,6 +1,7 @@
 package com.yoochangwonspro.intermediateproject
 
 import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -10,5 +11,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     // 서버에다가 해당 토큰을 갱신해줘야하는 처리를 해줘야한다
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
+    }
+
+    // firebase 에서 메세지를 발신하고 클라이언트 단에서 수신할 때 마다 이 메서드를 호출하게 된다
+    override fun onMessageReceived(message: RemoteMessage) {
+        super.onMessageReceived(message)
     }
 }
