@@ -1,5 +1,6 @@
 package com.yoochangwonspro.intermediateproject
 
+import android.os.Build
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -16,5 +17,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     // firebase 에서 메세지를 발신하고 클라이언트 단에서 수신할 때 마다 이 메서드를 호출하게 된다
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+        }
     }
 }
