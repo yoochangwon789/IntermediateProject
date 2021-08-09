@@ -16,7 +16,7 @@
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/push_alarm_result_test_view"
+        android:id="@+id/push_alarm_result_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
