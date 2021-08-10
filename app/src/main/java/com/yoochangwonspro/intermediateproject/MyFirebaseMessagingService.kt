@@ -24,7 +24,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         createNotificationChannel()
 
-
+        val title = message.data["title"]
+        val messageText = message.data["message"]
 
         // 알림 컨텐츠 생성
         // 알림이 울리게 되면 statusBar 나 좌측 상단에 설정한 아이콘이 뜨게된다
