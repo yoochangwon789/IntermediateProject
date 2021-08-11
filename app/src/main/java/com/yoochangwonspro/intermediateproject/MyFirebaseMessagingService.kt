@@ -40,7 +40,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         // NotificationCompat.Builder 를 실제로 notify 시키는 부분
         // 메세지를 보냈을 때 타이틀과 메세지를 맞춰서 알림을 보여주는 것을 확인할 수 있다.
         NotificationManagerCompat.from(this)
-            .notify(1, createNotification(type, title, message))
+            .notify(type.id, createNotification(type, title, message))
     }
 
     private fun createNotificationChannel() {
