@@ -64,12 +64,22 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     ): Notification {
         // 알림 컨텐츠 생성
         // 알림이 울리게 되면 statusBar 나 좌측 상단에 설정한 아이콘이 뜨게된다
-        return NotificationCompat.Builder(this, CHANNEL_ID)
+        val notificationBuilder =  NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_baseline_notifications_24)
             .setContentTitle(title)
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .build()
+
+        when (type) {
+            NotificationType.NORMAL -> Unit
+            NotificationType.EXPANDABLE -> {
+
+            }
+            NotificationType.CUSTOM -> {
+
+            }
+        }
     }
 
     companion object {
