@@ -29,6 +29,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val type = remoteMessage.data["type"]
             ?.let { NotificationType.valueOf(it) }
 
+        type ?: return
+
         val title = remoteMessage.data["title"]
         val message = remoteMessage.data["message"]
 
