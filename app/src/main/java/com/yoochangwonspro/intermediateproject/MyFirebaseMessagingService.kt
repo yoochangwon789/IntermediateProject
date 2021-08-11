@@ -1,5 +1,6 @@
 package com.yoochangwonspro.intermediateproject
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -29,18 +30,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val type = remoteMessage.data["type"]
             ?.let { NotificationType.valueOf(it) }
 
+        // null 이면 알림을 생성하지 않는다
         type ?: return
 
         val title = remoteMessage.data["title"]
         val message = remoteMessage.data["message"]
 
-        // 알림 컨텐츠 생성
-        // 알림이 울리게 되면 statusBar 나 좌측 상단에 설정한 아이콘이 뜨게된다
-        val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
-            .setContentTitle(title)
-            .setContentText(message)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         // NotificationCompat.Builder 를 실제로 notify 시키는 부분
         // 메세지를 보냈을 때 타이틀과 메세지를 맞춰서 알림을 보여주는 것을 확인할 수 있다.
@@ -60,6 +55,21 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
                 .createNotificationChannel(channel)
         }
+    }
+
+    private fun createNotification(
+        type: NotificationType,
+        title: String,
+        message: String,
+    ): Notification {
+        // 알림 컨텐츠 생성
+        // 알림이 울리게 되면 statusBar 나 좌측 상단에 설정한 아이콘이 뜨게된다
+        return NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .build()
     }
 
     companion object {
