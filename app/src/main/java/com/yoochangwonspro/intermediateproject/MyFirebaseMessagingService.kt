@@ -69,7 +69,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setContentTitle(title)
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .build()
 
         when (type) {
             NotificationType.NORMAL -> Unit
@@ -80,6 +79,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
             }
         }
+
+        return notificationBuilder.build()
     }
 
     companion object {
