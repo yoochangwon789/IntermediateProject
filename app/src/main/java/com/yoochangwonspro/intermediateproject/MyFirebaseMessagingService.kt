@@ -25,6 +25,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         createNotificationChannel()
 
+        // type 의 값이 null 이 아니고 type 의 값이 NotificationType class 상수의 이름과 같은 것으로 매치
+        val type = remoteMessage.data["type"]
+            ?.let { NotificationType.valueOf(it) }
+
         val title = remoteMessage.data["title"]
         val message = remoteMessage.data["message"]
 
