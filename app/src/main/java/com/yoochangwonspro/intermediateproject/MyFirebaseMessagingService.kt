@@ -1,6 +1,5 @@
 package com.yoochangwonspro.intermediateproject
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -21,20 +20,20 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     // firebase 에서 메세지를 발신하고 클라이언트 단에서 수신할 때 마다 이 메서드를 호출하게 된다
-    override fun onMessageReceived(message: RemoteMessage) {
-        super.onMessageReceived(message)
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        super.onMessageReceived(remoteMessage)
 
         createNotificationChannel()
 
-        val title = message.data["title"]
-        val messageText = message.data["message"]
+        val title = remoteMessage.data["title"]
+        val message = remoteMessage.data["message"]
 
         // 알림 컨텐츠 생성
         // 알림이 울리게 되면 statusBar 나 좌측 상단에 설정한 아이콘이 뜨게된다
         val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_baseline_notifications_24)
             .setContentTitle(title)
-            .setContentText(messageText)
+            .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         // NotificationCompat.Builder 를 실제로 notify 시키는 부분
