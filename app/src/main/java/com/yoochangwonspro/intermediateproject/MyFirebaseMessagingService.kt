@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -90,7 +91,17 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 )
             }
             NotificationType.CUSTOM -> {
-
+                notificationBuilder.setStyle(
+                    NotificationCompat.DecoratedCustomViewStyle())
+                    .setCustomContentView(
+                        RemoteViews(
+                            packageName,
+                            R.layout.view_custom_notification
+                        ).apply {
+                            setTextViewText(R.id.custom_notification_title, title)
+                            setTextViewText(R.id.custom_notification_message, message)
+                        }
+                    )
             }
         }
 
