@@ -1,5 +1,6 @@
 package com.yoochangwonspro.intermediateproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -20,6 +21,7 @@ class PushAlarmActivity : AppCompatActivity() {
         setContentView(R.layout.activity_push_alarm)
 
         initFirebase()
+        updateResult()
     }
 
     private fun initFirebase() {
@@ -29,6 +31,11 @@ class PushAlarmActivity : AppCompatActivity() {
                 firebaseToken.text = task.result
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        updateResult(true)
     }
 
     // isNewIntent 으로 인해서 앱이 실행되었는가
