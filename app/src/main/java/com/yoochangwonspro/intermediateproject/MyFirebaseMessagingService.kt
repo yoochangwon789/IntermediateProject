@@ -3,6 +3,8 @@ package com.yoochangwonspro.intermediateproject
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -69,7 +71,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
 
-
+        // pendingIntent 란 누군가한테 인텐트를 다룰 수 있도록 하는 권한
+        val pendingIntent = PendingIntent.getActivity(this, type.id, intent, FLAG_UPDATE_CURRENT)
 
         // 알림 컨텐츠 생성
         // 알림이 울리게 되면 statusBar 나 좌측 상단에 설정한 아이콘이 뜨게된다
