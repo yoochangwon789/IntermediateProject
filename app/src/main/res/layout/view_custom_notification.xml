@@ -10,7 +10,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
-        tools:text="title"
+        tools:text="Title"
         style="@style/TextAppearance.Compat.Notification.Title"/>
+
+     <TextView
+         android:id="@+id/custom_notification_message"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         tools:text="message"
+         android:layout_marginTop="10dp"
+         style="@style/TextAppearance.Compat.Notification" />
 
 </LinearLayout>
