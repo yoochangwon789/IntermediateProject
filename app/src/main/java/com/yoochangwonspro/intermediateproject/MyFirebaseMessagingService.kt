@@ -64,7 +64,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     ): Notification {
         // 알림 컨텐츠 생성
         // 알림이 울리게 되면 statusBar 나 좌측 상단에 설정한 아이콘이 뜨게된다
-        val notificationBuilder =  NotificationCompat.Builder(this, CHANNEL_ID)
+        val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_baseline_notifications_24)
             .setContentTitle(title)
             .setContentText(message)
@@ -73,7 +73,21 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         when (type) {
             NotificationType.NORMAL -> Unit
             NotificationType.EXPANDABLE -> {
-
+                notificationBuilder.setStyle(
+                    NotificationCompat.BigTextStyle()
+                        .bigText("\uD83D\uDC4B \uD83E\uDD1A \uD83D\uDD90 ✋ \uD83D\uDD96 " +
+                                "\uD83D\uDC4C \uD83E\uDD0C \uD83E\uDD0F ✌️ " +
+                                "\uD83E\uDD1E \uD83E\uDD1F \uD83E\uDD18 \uD83E\uDD19 \uD83D\uDC48 " +
+                                "\uD83D\uDC49 \uD83D\uDC46 \uD83D\uDD95 \uD83D\uDC47 ☝️ " +
+                                "\uD83D\uDC4D \uD83D\uDC4E ✊ \uD83D\uDC4A \uD83E\uDD1B \uD83E\uDD1C " +
+                                "\uD83D\uDC4F \uD83D\uDE4C \uD83D\uDC50 " +
+                                "\uD83E\uDD32 \uD83E\uDD1D \uD83D\uDE4F ✍️ \uD83D\uDC85 \uD83E\uDD33 " +
+                                "\uD83D\uDCAA \uD83E\uDDBE \uD83E\uDDB5 " +
+                                "\uD83E\uDDBF \uD83E\uDDB6 \uD83D\uDC63 \uD83D\uDC42 \uD83E\uDDBB " +
+                                "\uD83D\uDC43 \uD83E\uDEC0 \uD83E\uDEC1 \uD83E\uDDE0 " +
+                                "\uD83E\uDDB7 \uD83E\uDDB4 \uD83D\uDC40 \uD83D\uDC41 \uD83D\uDC45 " +
+                                "\uD83D\uDC44 \uD83D\uDC8B \uD83E\uDE78")
+                )
             }
             NotificationType.CUSTOM -> {
 
