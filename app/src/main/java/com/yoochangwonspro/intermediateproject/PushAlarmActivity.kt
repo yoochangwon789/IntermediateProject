@@ -34,6 +34,10 @@ class PushAlarmActivity : AppCompatActivity() {
     // isNewIntent 으로 인해서 앱이 실행되었는가
     // 기존의 켜져있었는데 notification 을 눌러서 앱이 갱신되었는가
     private fun updateResult(isNewIntent: Boolean = false) {
-
+        resultTextView.text = if (isNewIntent) {
+            "(으)로 갱신했습니다."
+        } else {
+            "(으)로 실행했습니다."
+        }
     }
 }
