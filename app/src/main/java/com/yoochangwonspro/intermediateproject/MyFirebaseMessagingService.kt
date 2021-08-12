@@ -66,7 +66,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         title: String?,
         message: String?,
     ): Notification {
-        val intent = Intent(this, MainActivity::class.java).apply {
+        val intent = Intent(this, PushAlarmActivity::class.java).apply {
             putExtra("notificationType", "${type.title} 타입")
             addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
