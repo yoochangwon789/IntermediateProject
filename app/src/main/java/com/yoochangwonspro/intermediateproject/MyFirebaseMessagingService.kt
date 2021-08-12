@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
@@ -63,6 +64,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         title: String?,
         message: String?,
     ): Notification {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("notificationType", "${type.title} 타입")
+            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        }
+
+
+
         // 알림 컨텐츠 생성
         // 알림이 울리게 되면 statusBar 나 좌측 상단에 설정한 아이콘이 뜨게된다
         val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
