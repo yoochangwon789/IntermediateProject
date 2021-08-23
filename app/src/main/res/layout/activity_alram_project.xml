@@ -7,6 +7,18 @@
     android:background="#222222"
     tools:context=".AlramProjectActivity">
 
+    <View
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/alram_on_off_button"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        android:background="@drawable/background_white_ring"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
     <TextView
         android:id="@+id/alram_time_text_view"
         android:layout_width="wrap_content"
