@@ -13,13 +13,11 @@ class AlarmProjectActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm_project)
 
-        // step0 뷰를 초기화해주기
         initOnOffButton()
         initChangeAlarmTimeButton()
 
-        // step1 데이터 가져오기
-
-        // step2 뷰에 데이터를 그려주기
+        val model = fetchDataFromSharedPreferences()
+        renderView(model)
     }
 
     private fun initOnOffButton() {
@@ -74,5 +72,11 @@ class AlarmProjectActivity : AppCompatActivity() {
         }
 
         return model
+    }
+
+    private fun fetchDataFromSharedPreferences(): AlarmDisplayModel {
+        val sharedPreferences = getSharedPreferences("time", Context.MODE_PRIVATE)
+
+        val timeDbValue = sharedPreferences.getString("alarm")
     }
 }
