@@ -1,8 +1,10 @@
 package com.yoochangwonspro.intermediateproject
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -86,11 +88,24 @@ class AlarmProjectActivity : AppCompatActivity() {
             minute = alarmData[1].toInt(),
             onOffDbValue
         )
+
+        // 보정 예외 처리
+        val pendingIntent = PendingIntent.getBroadcast(
+            this,
+            ALARM_REQUEST_CODE,
+            Intent(this, AlarmReceiver::class.java),
+            PendingIntent.FLAG_NO_CREATE
+        )
+
+        if (pendingIntent == null) {
+
+        }
     }
 
     companion object {
         private const val SHARED_PREFERENCES_NAME = "time"
         private const val ALARM_KEY = "alarm"
         private const val ONOFF_KEY = "onOff"
+        private const val ALARM_REQUEST_CODE = 1000
     }
 }
