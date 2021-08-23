@@ -42,12 +42,7 @@ class AlramProjectActivity : AppCompatActivity() {
 
             TimePickerDialog(this, { picker, hour, minute ->
 
-                val model = AlramDisplayModel(
-                    hour = hour,
-                    minute = minute,
-                    onOff = false
-                )
-
+                val model = saveAlarmModel(hour, minute, false)
                 // 데이터를 저장한다.
                 // 뷰를 업데이트 한다.
                 // 기존에 있던 알람을 삭제한다.
@@ -56,7 +51,17 @@ class AlramProjectActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveAlarmModel(): AlramDisplayModel {
+    private fun saveAlarmModel(
+        hour: Int,
+        minute: Int,
+        onOff: Boolean,
+    ): AlramDisplayModel {
+        val model = AlramDisplayModel(
+            hour = hour,
+            minute = minute,
+            onOff = false
+        )
 
+        return model
     }
 }
