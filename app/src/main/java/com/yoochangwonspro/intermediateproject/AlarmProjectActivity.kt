@@ -46,8 +46,8 @@ class AlarmProjectActivity : AppCompatActivity() {
             TimePickerDialog(this, { picker, hour, minute ->
 
                 val model = saveAlarmModel(hour, minute, false)
-                // 데이터를 저장한다.
-                // 뷰를 업데이트 한다.
+                renderView(model)
+
                 // 기존에 있던 알람을 삭제한다.
             }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false)
                 .show()
