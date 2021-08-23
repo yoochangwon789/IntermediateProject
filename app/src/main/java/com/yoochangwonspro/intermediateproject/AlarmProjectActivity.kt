@@ -58,8 +58,8 @@ class AlarmProjectActivity : AppCompatActivity() {
         hour: Int,
         minute: Int,
         onOff: Boolean,
-    ): AlramDisplayModel {
-        val model = AlramDisplayModel(
+    ): AlarmDisplayModel {
+        val model = AlarmDisplayModel(
             hour = hour,
             minute = minute,
             onOff = false

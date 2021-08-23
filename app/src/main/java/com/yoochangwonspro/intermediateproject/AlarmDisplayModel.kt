@@ -1,6 +1,6 @@
 package com.yoochangwonspro.intermediateproject
 
-data class AlramDisplayModel(
+data class AlarmDisplayModel(
     val hour: Int,
     val minute: Int,
     var onOff: Boolean
@@ -18,4 +18,8 @@ data class AlramDisplayModel(
         get() {
             return if (hour < 12) "AM" else "PM"
         }
+
+    fun makeDataForDB(): String {
+        return "$hour:$minute"
+    }
 }
