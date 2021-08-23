@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#222222"
     tools:context=".AlramProjectActivity">
 
     <TextView
@@ -12,10 +13,11 @@
         android:layout_height="wrap_content"
         android:text="09:30"
         android:textSize="50sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/alram_am_pm_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:ignore="HardcodedText" />
 
@@ -25,12 +27,31 @@
         android:layout_height="wrap_content"
         android:text="AM"
         android:textSize="25sp"
-        tools:ignore="HardcodedText"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/alram_on_off_button"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/alram_time_text_view"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/alram_on_off_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="알람켜기"
+        app:layout_constraintBottom_toTopOf="@id/alram_change_time_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
 
-
+    <Button
+        android:id="@+id/alram_change_time_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="시간 재설정"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
