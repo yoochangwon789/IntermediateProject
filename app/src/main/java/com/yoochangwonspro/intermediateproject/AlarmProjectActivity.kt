@@ -1,15 +1,17 @@
 package com.yoochangwonspro.intermediateproject
 
+import android.annotation.SuppressLint
 import android.app.TimePickerDialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import java.util.*
 
-class AlramProjectActivity : AppCompatActivity() {
+class AlarmProjectActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_alram_project)
+        setContentView(R.layout.activity_alarm_project)
 
         // step0 뷰를 초기화해주기
         initOnOffButton()
@@ -35,8 +37,8 @@ class AlramProjectActivity : AppCompatActivity() {
     }
 
     private fun initChangeAlarmTimeButton() {
-        val changeAlramButton = findViewById<Button>(R.id.alram_change_time_button)
-        changeAlramButton.setOnClickListener {
+        val changeAlarmButton = findViewById<Button>(R.id.alram_change_time_button)
+        changeAlarmButton.setOnClickListener {
 
             val calendar = Calendar.getInstance()
 
@@ -51,6 +53,7 @@ class AlramProjectActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("CommitPrefEdits")
     private fun saveAlarmModel(
         hour: Int,
         minute: Int,
@@ -61,6 +64,14 @@ class AlramProjectActivity : AppCompatActivity() {
             minute = minute,
             onOff = false
         )
+
+        val sharedPreferences = getSharedPreferences("time", Context.MODE_PRIVATE)
+
+        with(sharedPreferences.edit()) {
+            putString("alarm", model.makeDataForDB())
+            putBoolean("onOff", model.onOff)
+            commit()
+        }
 
         return model
     }
