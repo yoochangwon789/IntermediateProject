@@ -91,21 +91,21 @@ class AlarmProjectActivity : AppCompatActivity() {
         )
 
         // 보정 예외 처리
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            ALARM_REQUEST_CODE,
-            Intent(this, AlarmReceiver::class.java),
-            PendingIntent.FLAG_NO_CREATE
-        )
-
-        if ((pendingIntent == null) && alarmModel.onOff) {
-            // 알람은 꺼져있는데, 데이터는 있는 경우
-            alarmModel.onOff = false
-
-        } else if ((pendingIntent != null) and alarmModel.onOff.not()) {
-            // 알람은 등록이 되있는데, 데이터가 없는 경우
-            pendingIntent.cancel()
-        }
+//        val pendingIntent = PendingIntent.getBroadcast(
+//            this,
+//            ALARM_REQUEST_CODE,
+//            Intent(this, AlarmReceiver::class.java),
+//            PendingIntent.FLAG_NO_CREATE
+//        )
+//
+//        if ((pendingIntent == null) && alarmModel.onOff) {
+//            // 알람은 꺼져있는데, 데이터는 있는 경우
+//            alarmModel.onOff = false
+//
+//        } else if ((pendingIntent != null) and alarmModel.onOff.not()) {
+//            // 알람은 등록이 되있는데, 데이터가 없는 경우
+//            pendingIntent.cancel()
+//        }
 
         return alarmModel
     }
@@ -121,6 +121,7 @@ class AlarmProjectActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.alram_on_off_button).apply {
             text = model.onOffText
+            tag = model
         }
     }
 
