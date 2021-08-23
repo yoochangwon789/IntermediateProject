@@ -97,9 +97,16 @@ class AlarmProjectActivity : AppCompatActivity() {
             PendingIntent.FLAG_NO_CREATE
         )
 
-        if (pendingIntent == null) {
+        if ((pendingIntent == null) && alarmModel.onOff) {
+            // 알람은 꺼져있는데, 데이터는 없는 경우
+            alarmModel.onOff = false
 
+        } else if ((pendingIntent != null) and alarmModel.onOff.not()) {
+            // 알람은 등록이 되있는데, 데이터가 없는 경우
+            pendingIntent.cancel()
         }
+
+        return alarmModel
     }
 
     companion object {
