@@ -66,8 +66,8 @@ class AlarmProjectActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("time", Context.MODE_PRIVATE)
 
         with(sharedPreferences.edit()) {
-            putString("alarm", model.makeDataForDB())
-            putBoolean("onOff", model.onOff)
+            putString(ALARM_KEY, model.makeDataForDB())
+            putBoolean(ONOFF_KEY, model.onOff)
             commit()
         }
 
@@ -77,6 +77,11 @@ class AlarmProjectActivity : AppCompatActivity() {
     private fun fetchDataFromSharedPreferences(): AlarmDisplayModel {
         val sharedPreferences = getSharedPreferences("time", Context.MODE_PRIVATE)
 
-        val timeDbValue = sharedPreferences.getString("alarm")
+        val timeDbValue = sharedPreferences.getString(ALARM_KEY)
+    }
+
+    companion object {
+        private const val ALARM_KEY = "alarm"
+        private const val ONOFF_KEY = "onOff"
     }
 }
