@@ -8,6 +8,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
+import org.w3c.dom.Text
 import java.util.*
 
 class AlarmProjectActivity : AppCompatActivity() {
@@ -110,7 +112,17 @@ class AlarmProjectActivity : AppCompatActivity() {
     }
 
     private fun renderView(model: AlarmDisplayModel) {
+        findViewById<TextView>(R.id.alram_am_pm_text_view).apply {
+            text = model.ampmText
+        }
 
+        findViewById<TextView>(R.id.alram_time_text_view).apply {
+            text = model.timeText
+        }
+
+        findViewById<Button>(R.id.alram_on_off_button).apply {
+
+        }
     }
 
     companion object {
