@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import org.w3c.dom.Text
 import java.util.*
 
 class AlarmProjectActivity : AppCompatActivity() {
@@ -121,7 +120,7 @@ class AlarmProjectActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.alram_on_off_button).apply {
-
+            text = model.onOffText
         }
     }
 
