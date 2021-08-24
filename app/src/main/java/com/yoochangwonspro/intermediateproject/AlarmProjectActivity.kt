@@ -48,7 +48,13 @@ class AlarmProjectActivity : AppCompatActivity() {
                 val model = saveAlarmModel(hour, minute, false)
                 renderView(model)
 
-                // 기존에 있던 알람을 삭제한다.
+                val pendingIntent = PendingIntent.getBroadcast(
+                    this,
+                    ALARM_REQUEST_CODE,
+                    Intent(this, AlarmReceiver::class.java),
+                    PendingIntent.FLAG_NO_CREATE
+                )
+
             }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false)
                 .show()
         }
@@ -91,21 +97,21 @@ class AlarmProjectActivity : AppCompatActivity() {
         )
 
         // 보정 예외 처리
-//        val pendingIntent = PendingIntent.getBroadcast(
-//            this,
-//            ALARM_REQUEST_CODE,
-//            Intent(this, AlarmReceiver::class.java),
-//            PendingIntent.FLAG_NO_CREATE
-//        )
-//
-//        if ((pendingIntent == null) && alarmModel.onOff) {
-//            // 알람은 꺼져있는데, 데이터는 있는 경우
-//            alarmModel.onOff = false
-//
-//        } else if ((pendingIntent != null) and alarmModel.onOff.not()) {
-//            // 알람은 등록이 되있는데, 데이터가 없는 경우
-//            pendingIntent.cancel()
-//        }
+        val pendingIntent = PendingIntent.getBroadcast(
+            this,
+            ALARM_REQUEST_CODE,
+            Intent(this, AlarmReceiver::class.java),
+            PendingIntent.FLAG_NO_CREATE
+        )
+
+        if ((pendingIntent == null) && alarmModel.onOff) {
+            // 알람은 꺼져있는데, 데이터는 있는 경우
+            alarmModel.onOff = false
+
+        } else if ((pendingIntent != null) and alarmModel.onOff.not()) {
+            // 알람은 등록이 되있는데, 데이터가 없는 경우
+            pendingIntent.cancel()
+        }
 
         return alarmModel
     }
