@@ -1,6 +1,7 @@
 package com.yoochangwonspro.intermediateproject
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
@@ -35,8 +36,31 @@ class AlarmProjectActivity : AppCompatActivity() {
             // onOff 에 따라 작업을 처리한다.
             if (newModel.onOff) {
                 // 켜진 경우 -> 알람을 등록
+                val calendar = Calendar.getInstance().apply {
+                    set(Calendar.HOUR_OF_DAY, newModel.hour)
+                    set(Calendar.MINUTE, newModel.minute)
+
+                    if (before(Calendar.getInstance())) {
+                        add(Calendar.DATE , 1)
+                    }
+                }
+
+                val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+                val intent = Intent(this, AlarmReceiver::class.java)
+                val pendingIntent = PendingIntent.getBroadcast(
+                    this, ALARM_REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT
+                )
+
+                alarmManager.setInexactRepeating(
+                    AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    calendar.timeInMillis,
+                    AlarmManager.INTERVAL_DAY,
+                    pendingIntent
+                )
+
             } else {
                 // 꺼진 경우 -> 알름을 제거
+                cancelAlarm()
             }
 
 
@@ -59,13 +83,7 @@ class AlarmProjectActivity : AppCompatActivity() {
                 renderView(model)
 
                 // 기존의 알람을 삭제하는 부분
-                val pendingIntent = PendingIntent.getBroadcast(
-                    this,
-                    ALARM_REQUEST_CODE,
-                    Intent(this, AlarmReceiver::class.java),
-                    PendingIntent.FLAG_NO_CREATE
-                )
-                pendingIntent?.cancel()
+                cancelAlarm()
 
             }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false)
                 .show()
