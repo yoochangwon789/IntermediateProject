@@ -28,7 +28,8 @@ class AlarmProjectActivity : AppCompatActivity() {
         onOffButton.setOnClickListener {
             // 데이터를 확인을 한다.
             // as? => 형변환의 실패 했을 때 null 로 떨어지게 된다.
-            val model = it.tag as? AlarmDisplayModel
+            val model = it.tag as? AlarmDisplayModel ?: return@setOnClickListener
+            val newModel = saveAlarmModel(model.hour, model.minute, model.onOff.not())
 
             // onOff 에 따라 작업을 처리한다.
 
@@ -73,7 +74,7 @@ class AlarmProjectActivity : AppCompatActivity() {
         val model = AlarmDisplayModel(
             hour = hour,
             minute = minute,
-            onOff = false
+            onOff = onOff
         )
 
         val sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
