@@ -48,12 +48,14 @@ class AlarmProjectActivity : AppCompatActivity() {
                 val model = saveAlarmModel(hour, minute, false)
                 renderView(model)
 
+                // 기존의 알람을 삭제하는 부분
                 val pendingIntent = PendingIntent.getBroadcast(
                     this,
                     ALARM_REQUEST_CODE,
                     Intent(this, AlarmReceiver::class.java),
                     PendingIntent.FLAG_NO_CREATE
                 )
+                pendingIntent?.cancel()
 
             }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false)
                 .show()
