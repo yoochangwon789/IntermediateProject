@@ -26,11 +26,12 @@ class AlarmProjectActivity : AppCompatActivity() {
     private fun initOnOffButton() {
         val onOffButton = findViewById<Button>(R.id.alram_on_off_button)
         onOffButton.setOnClickListener {
-            // 데이터를 확인을 한다.
             // as? => 형변환의 실패 했을 때 null 로 떨어지게 된다.
             val model = it.tag as? AlarmDisplayModel ?: return@setOnClickListener
             val newModel = saveAlarmModel(model.hour, model.minute, model.onOff.not())
+            renderView(newModel)
 
+            // 데이터를 확인을 한다.
             // onOff 에 따라 작업을 처리한다.
 
             // 오프 -> 알람을 제거
