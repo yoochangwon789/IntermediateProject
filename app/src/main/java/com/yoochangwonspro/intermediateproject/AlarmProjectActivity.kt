@@ -27,12 +27,18 @@ class AlarmProjectActivity : AppCompatActivity() {
         val onOffButton = findViewById<Button>(R.id.alram_on_off_button)
         onOffButton.setOnClickListener {
             // as? => 형변환의 실패 했을 때 null 로 떨어지게 된다.
+            // 데이터를 확인을 한다.
             val model = it.tag as? AlarmDisplayModel ?: return@setOnClickListener
             val newModel = saveAlarmModel(model.hour, model.minute, model.onOff.not())
             renderView(newModel)
 
-            // 데이터를 확인을 한다.
             // onOff 에 따라 작업을 처리한다.
+            if (newModel.onOff) {
+                // 켜진 경우 -> 알람을 등록
+            } else {
+                // 꺼진 경우 -> 알름을 제거
+            }
+
 
             // 오프 -> 알람을 제거
             // 온 -> 알람을 등록
@@ -135,6 +141,16 @@ class AlarmProjectActivity : AppCompatActivity() {
             text = model.onOffText
             tag = model
         }
+    }
+
+    private fun cancelAlarm() {
+        val pendingIntent = PendingIntent.getBroadcast(
+            this,
+            ALARM_REQUEST_CODE,
+            Intent(this, AlarmReceiver::class.java),
+            PendingIntent.FLAG_NO_CREATE
+        )
+        pendingIntent?.cancel()
     }
 
     companion object {
