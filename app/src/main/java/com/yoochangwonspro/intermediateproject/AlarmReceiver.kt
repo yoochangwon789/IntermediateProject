@@ -6,9 +6,14 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
 class AlarmReceiver : BroadcastReceiver() {
+
+    companion object {
+        private const val NOTIFICATION_CHANNEL_ID = "1000"
+    }
 
     override fun onReceive(context: Context, intent: Intent) {
         createNotificationChannel(context)
@@ -18,7 +23,7 @@ class AlarmReceiver : BroadcastReceiver() {
     private fun createNotificationChannel(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
-                "1000",
+                NOTIFICATION_CHANNEL_ID,
                 "기상 알람",
                 NotificationManager.IMPORTANCE_HIGH
             )
@@ -28,6 +33,8 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     private fun notifyNotification(context: Context) {
+        with(NotificationManagerCompat.from(context)) {
 
+        }
     }
 }
