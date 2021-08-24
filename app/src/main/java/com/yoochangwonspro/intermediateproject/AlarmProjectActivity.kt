@@ -62,12 +62,6 @@ class AlarmProjectActivity : AppCompatActivity() {
                 // 꺼진 경우 -> 알름을 제거
                 cancelAlarm()
             }
-
-
-            // 오프 -> 알람을 제거
-            // 온 -> 알람을 등록
-
-            // 데이터를 저장한다.
         }
     }
 
