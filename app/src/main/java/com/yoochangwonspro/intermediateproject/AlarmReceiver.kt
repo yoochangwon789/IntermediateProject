@@ -13,6 +13,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
     companion object {
         private const val NOTIFICATION_CHANNEL_ID = "1000"
+        private const val NOTIFICATION_ID = 100
     }
 
     override fun onReceive(context: Context, intent: Intent) {
@@ -34,7 +35,12 @@ class AlarmReceiver : BroadcastReceiver() {
 
     private fun notifyNotification(context: Context) {
         with(NotificationManagerCompat.from(context)) {
+            val build = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
+                .setContentTitle("알람")
+                .setContentText("일어날 시간 입니다.")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
 
+            notify(NOTIFICATION_ID, build.build())
         }
     }
 }
