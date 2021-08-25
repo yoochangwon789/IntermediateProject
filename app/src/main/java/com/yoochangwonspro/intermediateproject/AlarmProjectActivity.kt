@@ -54,7 +54,7 @@ class AlarmProjectActivity : AppCompatActivity() {
                 )
 
                 alarmManager.setInexactRepeating(
-                    AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    AlarmManager.RTC_WAKEUP,
                     calendar.timeInMillis,
                     AlarmManager.INTERVAL_DAY,
                     pendingIntent
