@@ -59,7 +59,7 @@ class AlarmProjectActivity : AppCompatActivity() {
                 )
 
             } else {
-                // 꺼진 경우 -> 알름을 제거
+                // 꺼진 경우 -> 알람을 제거
                 cancelAlarm()
             }
         }
