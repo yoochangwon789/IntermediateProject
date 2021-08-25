@@ -40,6 +40,8 @@ class AlarmProjectActivity : AppCompatActivity() {
                     set(Calendar.HOUR_OF_DAY, newModel.hour)
                     set(Calendar.MINUTE, newModel.minute)
 
+                    // 지나간 시간의 관한 알람 조건
+                    // add 함수를 통해서 하루 밀어주는 방식으로 설정
                     if (before(Calendar.getInstance())) {
                         add(Calendar.DATE , 1)
                     }
